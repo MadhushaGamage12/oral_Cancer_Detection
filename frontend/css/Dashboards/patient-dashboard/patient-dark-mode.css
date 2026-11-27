@@ -1,0 +1,86 @@
+/* ORALAI - COMMON PATIENT DARK MODE*/
+/* MAIN PAGE*/
+body.dark-mode {
+    background: #111827 !important;
+    color: #f9fafb;
+}
+/* COMMON CARDS*/
+
+body.dark-mode .card,
+body.dark-mode .dashboard-card,
+body.dark-mode .screening-card,
+body.dark-mode .history-card,
+body.dark-mode .result-card,
+body.dark-mode .form-card,
+body.dark-mode .content-card {
+    background: #1f2937 !important;
+    color: #f9fafb !important;
+}
+
+/* HEADINGS*/
+body.dark-mode h1,
+body.dark-mode h2,
+body.dark-mode h3,
+body.dark-mode h4 {
+    color: #f9fafb;
+}
+
+/* PARAGRAPHS / SECONDARY TEXT */
+body.dark-mode p,
+body.dark-mode span.secondary,
+body.dark-mode .subtitle,
+body.dark-mode .description {
+    color: #9ca3af;
+}
+
+/* INPUTS*/
+body.dark-mode input,
+body.dark-mode select,
+body.dark-mode textarea {
+    background: #111827 !important;
+    color: #f9fafb !important;
+    border-color: #374151 !important;
+}
+
+/* TABLE*/
+body.dark-mode table {
+    background: #1f2937;
+    color: #f9fafb;
+}
+
+body.dark-mode th {
+    background: #374151;
+    color: #f9fafb;
+}
+
+body.dark-mode td {
+    border-color: #374151;
+}
+
+/*  SIDEBAR */
+
+body.dark-mode .sidebar {
+    background: #111827;
+}
+
+body.dark-mode .sidebar a {
+    color: #d1d5db;
+}
+
+body.dark-mode .sidebar a:hover,
+body.dark-mode .sidebar a.active {
+    background: #1f2937;
+    color: #ffffff;
+}
+
+/* TOPBAR */
+body.dark-mode .topbar {
+    background: #111827;
+    color: #f9fafb;
+}
+
+/* EMPTY / LOADING MESSAGE*/
+body.dark-mode .empty-message,
+body.dark-mode .loading-message {
+    color: #9ca3af;
+}
