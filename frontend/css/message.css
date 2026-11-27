@@ -1,0 +1,100 @@
+/* OralAI - Professional Toast Notifications */
+
+.toast-container {
+    position: fixed;
+    top: 24px;
+    right: 24px;
+    z-index: 99999;
+    width: calc(100% - 32px);
+    max-width: 340px;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+    pointer-events: none;
+}
+
+.toast-message {
+    position: relative;
+    box-sizing: border-box;
+    width: 100%;
+    padding: 15px 18px 17px;
+    background: #ffffff;
+    color: #111111;
+    border: 1px solid #222222;
+    border-radius: 8px;
+    box-shadow: 0 5px 18px rgba(0, 0, 0, 0.10);
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1.5;
+    overflow-wrap: anywhere;
+    animation: toastSlideIn 0.25s ease;
+}
+
+/* Error: only the message text is red */
+.toast-message.error {
+    color: #dc2626;
+}
+
+/* Success: message text stays black */
+.toast-message.success {
+    color: #111111;
+}
+
+/* Small progress line at the bottom */
+.toast-message::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 2px;
+    width: 100%;
+    background: currentColor;
+    opacity: 0.65;
+    transform-origin: left;
+    animation: toastProgress 3s linear forwards;
+}
+
+@keyframes toastSlideIn {
+    from {
+        opacity: 0;
+        transform: translateX(15px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes toastProgress {
+    from {
+        transform: scaleX(1);
+    }
+
+    to {
+        transform: scaleX(0);
+    }
+}
+
+@media (max-width: 480px) {
+    .toast-container {
+        top: 14px;
+        right: 12px;
+        width: calc(100% - 24px);
+        max-width: 340px;
+    }
+
+    .toast-message {
+        padding: 13px 15px 15px;
+        font-size: 13px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .toast-message,
+    .toast-message::after {
+        animation: none;
+    }
+}
