@@ -1,0 +1,975 @@
+/* ==========================================
+   OralAI - New Screening Page
+   Theme: Navy Blue + Royal Blue + Light Blue
+   Design-only update. Existing HTML/JS preserved.
+   ========================================== */
+
+
+/* ==========================================
+   1. GLOBAL STYLES
+   ========================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --navy: #101a30;
+    --navy-light: #182944;
+    --blue: #3563e9;
+    --blue-dark: #274fc7;
+    --blue-soft: #eaf0ff;
+    --sky: #f2f6ff;
+    --white: #ffffff;
+    --text: #1e293b;
+    --text-muted: #718096;
+    --border: #e3eaf5;
+    --shadow: 0 8px 28px rgba(24, 41, 68, 0.07);
+    --radius: 16px;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background:#acafb3;
+    color: var(--text);
+    font-size: 14px;
+    line-height: 1.6;
+    min-height: 100vh;
+    
+}
+
+button,
+input,
+select,
+textarea {
+    font: inherit;
+}
+
+button,
+a,
+label {
+    -webkit-tap-highlight-color: transparent;
+}
+
+
+/* ==========================================
+   2. DASHBOARD LAYOUT
+   ========================================== */
+
+.dashboard {
+    display: flex;
+    min-height: 100vh;
+}
+
+
+/* ==========================================
+   3. SIDEBAR
+   ========================================== */
+
+.sidebar {
+    width: 258px;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 100;
+
+    padding: 30px 17px;
+    overflow-y: auto;
+
+    background: linear-gradient(
+        180deg,
+        var(--navy) 0%,
+        #172b4a 100%
+    );
+
+    color: var(--white);
+    box-shadow: 5px 0 25px rgba(16, 26, 48, 0.08);
+}
+
+/* Logo */
+
+.logo {
+    text-align: left;
+    padding: 0 15px 30px;
+    margin-bottom: 25px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.logo h2 {
+    font-size: 30px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    line-height: 1.4;
+    color: var(--white);
+}
+
+.logo p {
+    margin-top: 5px;
+    font-size: 12px;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    color: #b8c8e8;
+}
+
+/* Navigation */
+
+.sidebar ul {
+    list-style: none;
+}
+
+.sidebar li {
+    margin-bottom: 9px;
+}
+
+.sidebar a {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    padding: 14px 15px;
+    border: 1px solid transparent;
+    border-radius: 11px;
+
+    color: #d6e0f2;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 500;
+
+    transition:
+        background 0.25s ease,
+        color 0.25s ease,
+        transform 0.25s ease;
+}
+
+.sidebar a:hover {
+    background: rgba(255, 255, 255, 0.09);
+    color: var(--white);
+    transform: translateX(3px);
+}
+
+.sidebar li.active a {
+    background: linear-gradient(
+        135deg,
+        var(--blue),
+        #557df4
+    );
+
+    color: var(--white);
+    border-color: rgba(255, 255, 255, 0.15);
+    box-shadow: 0 6px 18px rgba(53, 99, 233, 0.28);
+}
+
+
+/* ==========================================
+   4. MAIN CONTENT
+   ========================================== */
+
+.main-content {
+    width: calc(100% - 258px);
+    min-width: 0;
+    min-height: 100vh;
+    margin-left: 258px;
+}
+
+
+/* ==========================================
+   5. TOP BAR
+   ========================================== */
+
+.topbar {
+    min-height: 78px;
+    padding: 15px 38px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+
+    background: #192848;
+    border-bottom: 1px solid var(--border);
+    box-shadow: 0 3px 15px rgba(16, 26, 48, 0.035);
+
+    position: relative;
+    z-index: 100;
+}
+
+.topbar h1 {
+    color:  white;
+    font-size: 22px;
+    font-weight: 600;
+    line-height: 1.4;
+    letter-spacing: -0.5px;
+}
+
+/* User Menu */
+
+.user-menu {
+    position: relative;
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+/* Profile Button */
+
+.user-menu-button {
+    border: none;
+    background: transparent;
+    padding: 0;
+    margin: 0;
+
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+    outline: none;
+}
+
+.user-menu-button:focus {
+    outline: none;
+}
+
+.user-menu-button:focus-visible {
+    outline: 3px solid #91aaff;
+    outline-offset: 4px;
+}
+
+/* Avatar */
+
+.account-avatar {
+    width: 44px;
+    height: 44px;
+    flex-shrink: 0;
+
+    border-radius: 50%;
+    overflow: hidden;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: linear-gradient(
+        135deg,
+        var(--blue),
+        var(--navy-light)
+    );
+
+    color: var(--white);
+    font-size: 17px;
+    font-weight: 600;
+    text-transform: uppercase;
+
+    border: 3px solid var(--white);
+    box-shadow: 0 3px 12px rgba(53, 99, 233, 0.20);
+
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.user-menu-button:hover .account-avatar {
+    transform: scale(1.06);
+    box-shadow: 0 5px 15px rgba(53, 99, 233, 0.28);
+}
+
+/* Profile Photo */
+
+.account-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: none;
+}
+
+/* Initial */
+
+#userAvatarInitial {
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Dropdown */
+
+.user-dropdown {
+    position: absolute;
+    top: calc(100% + 12px);
+    right: 0;
+
+    width: 195px;
+    padding: 8px;
+
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 13px;
+
+    box-shadow: 0 12px 35px rgba(16, 26, 48, 0.15);
+
+    display: none;
+    z-index: 9999;
+}
+
+.user-dropdown.show {
+    display: block;
+    animation: dropdownFade 0.2s ease;
+}
+
+.user-dropdown a {
+    display: block;
+    padding: 11px 12px;
+
+    color: #39465d;
+    text-decoration: none;
+    font-size: 13px;
+    border-radius: 8px;
+
+    transition: background 0.2s ease, color 0.2s ease;
+}
+
+.user-dropdown a:hover {
+    background: var(--blue-soft);
+    color: var(--blue-dark);
+}
+
+@keyframes dropdownFade {
+    from {
+        opacity: 0;
+        transform: translateY(-5px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+/* ==========================================
+   6. SCREENING CONTENT CONTAINER
+   Fix: Center content and use available space
+   ========================================== */
+
+.screening-container {
+    width: 100%;
+    max-width: 1120px;
+
+    margin: 0 auto;
+    padding: 34px 38px 50px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+}
+
+/* Keep the two main cards aligned and consistent */
+
+.screening-card {
+    width: 100%;
+    min-width: 0;
+
+    padding: 30px;
+    margin: 0 0 25px;
+
+    background: var(--white);
+    border: 1px solid #e7edf7;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+
+    transition:
+        box-shadow 0.25s ease,
+        border-color 0.25s ease;
+}
+
+.screening-card:hover {
+    border-color: #dbe4f7;
+    box-shadow: 0 12px 32px rgba(24, 41, 68, 0.09);
+}
+
+/* Card Heading */
+
+.screening-card h2 {
+    margin-bottom: 18px;
+
+    color: var(--navy);
+    font-size: 19px;
+    font-weight: 600;
+    line-height: 1.5;
+    letter-spacing: -0.3px;
+}
+
+/* Heading number emphasis */
+
+.screening-card h2::first-letter {
+    color: var(--blue);
+}
+
+/* Description */
+
+.description {
+    color: var(--text-muted);
+    margin: 0 0 24px;
+
+    font-size: 13px;
+    line-height: 1.9;
+}
+
+
+/* ==========================================
+   7. IMAGE UPLOAD AREA
+   Fix: Center the upload content within card
+   ========================================== */
+
+.upload-area {
+    width: 100%;
+    max-width: 100%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    text-align: center;
+}
+
+/* Choose Image Button */
+
+.choose-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+
+    min-height: 46px;
+    padding: 12px 24px;
+
+    background: linear-gradient(
+        135deg,
+        var(--blue),
+        #5278ef
+    );
+
+    color: var(--white);
+    border: 1px solid transparent;
+    border-radius: 10px;
+
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+
+    box-shadow: 0 5px 14px rgba(53, 99, 233, 0.20);
+
+    transition:
+        background 0.25s ease,
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+.choose-btn:hover {
+    background: linear-gradient(
+        135deg,
+        var(--blue-dark),
+        var(--blue)
+    );
+
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(53, 99, 233, 0.28);
+}
+
+.choose-btn:active {
+    transform: translateY(0);
+}
+
+.choose-btn:focus-within {
+    outline: 3px solid #c8d5ff;
+    outline-offset: 3px;
+}
+
+/* Preview Area */
+
+.preview-box {
+    width: 100%;
+    max-width: 720px;
+    min-height: 260px;
+
+    margin: 22px auto 0;
+    padding: 24px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+
+    background: #f8faff;
+    border: 2px dashed #c8d5f0;
+    border-radius: 14px;
+
+    text-align: center;
+
+    transition:
+        background 0.25s ease,
+        border-color 0.25s ease;
+}
+
+.preview-box:hover {
+    background: #f2f6ff;
+    border-color: #91aaff;
+}
+
+/* Preview Image */
+
+.preview-box img {
+    display: none;
+
+    width: auto;
+    max-width: 100%;
+    max-height: 320px;
+
+    object-fit: contain;
+    border-radius: 10px;
+
+    box-shadow: 0 5px 18px rgba(16, 26, 48, 0.10);
+}
+
+/* Preview Placeholder */
+
+.preview-box p {
+    color: #8591a7;
+    font-size: 13px;
+    line-height: 1.8;
+}
+
+
+/* ==========================================
+   8. SCREENING INFORMATION FORM
+   ========================================== */
+
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 23px 25px;
+    align-items: start;
+}
+
+.form-group {
+    min-width: 0;
+
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group label {
+    margin-bottom: 9px;
+
+    color: #34415a;
+    font-size: 13px;
+    font-weight: 500;
+}
+
+/* Inputs and Selects */
+
+.form-group input,
+.form-group select {
+    width: 100%;
+    min-width: 0;
+    min-height: 47px;
+
+    padding: 12px 14px;
+
+    border: 1px solid #dce3ef;
+    border-radius: 9px;
+
+    background: #fbfcff;
+    color: var(--text);
+
+    font-family: 'Poppins', sans-serif;
+    font-size: 13px;
+
+    outline: none;
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease,
+        background 0.2s ease;
+}
+
+.form-group input::placeholder {
+    color: #9aa5b7;
+}
+
+.form-group input:hover,
+.form-group select:hover {
+    border-color: #b7c7f3;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+    background: var(--white);
+    border-color: var(--blue);
+
+    box-shadow: 0 0 0 4px rgba(53, 99, 233, 0.10);
+}
+
+/* Improve native select appearance */
+
+.form-group select {
+    cursor: pointer;
+}
+
+.form-group select:invalid {
+    color: #8591a7;
+}
+
+
+/* ==========================================
+   9. START SCREENING BUTTON
+   ========================================== */
+
+.screening-btn {
+    align-self: center;
+
+    width: auto;
+    min-width: 250px;
+    min-height: 49px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 9px;
+
+    margin: 2px 0 0;
+    padding: 13px 28px;
+
+    background: linear-gradient(
+        135deg,
+        var(--blue),
+        #5278ef
+    );
+
+    color: var(--white);
+    border: none;
+    border-radius: 10px;
+
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    box-shadow: 0 7px 18px rgba(53, 99, 233, 0.22);
+
+    transition:
+        background 0.25s ease,
+        transform 0.25s ease,
+        box-shadow 0.25s ease,
+        opacity 0.25s ease;
+}
+
+.screening-btn:hover:not(:disabled) {
+    background: linear-gradient(
+        135deg,
+        var(--blue-dark),
+        var(--blue)
+    );
+
+    transform: translateY(-2px);
+    box-shadow: 0 10px 24px rgba(53, 99, 233, 0.30);
+}
+
+.screening-btn:active:not(:disabled) {
+    transform: translateY(0);
+}
+
+.screening-btn:focus-visible {
+    outline: 3px solid #a8bbff;
+    outline-offset: 4px;
+}
+
+.screening-btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    box-shadow: none;
+}
+
+
+/* ==========================================
+   10. RESPONSIVE - TABLETS
+   ========================================== */
+
+@media (max-width: 1100px) {
+    .sidebar {
+        width: 225px;
+        padding: 25px 13px;
+    }
+
+    .main-content {
+        width: calc(100% - 225px);
+        margin-left: 225px;
+    }
+
+    .topbar {
+        padding: 15px 25px;
+    }
+
+    .screening-container {
+        max-width: 100%;
+        padding: 30px 25px 40px;
+    }
+
+    .screening-card {
+        padding: 26px;
+    }
+
+    .preview-box {
+        max-width: 650px;
+    }
+}
+
+
+/* ==========================================
+   11. RESPONSIVE - SMALL TABLETS
+   ========================================== */
+
+@media (max-width: 800px) {
+    .sidebar {
+        width: 205px;
+    }
+
+    .main-content {
+        width: calc(100% - 205px);
+        margin-left: 205px;
+    }
+
+    .topbar {
+        min-height: 72px;
+        padding: 13px 20px;
+    }
+
+    .topbar h1 {
+        font-size: 19px;
+    }
+
+    .screening-container {
+        padding: 25px 18px 35px;
+    }
+
+    .screening-card {
+        padding: 23px;
+    }
+
+    .form-grid {
+        gap: 19px;
+    }
+
+    .preview-box {
+        min-height: 230px;
+    }
+}
+
+
+/* ==========================================
+   12. RESPONSIVE - MOBILE
+   ========================================== */
+
+@media (max-width: 600px) {
+    .dashboard {
+        display: block;
+    }
+
+    .sidebar {
+        position: relative;
+        width: 100%;
+        height: auto;
+        padding: 17px 15px;
+        overflow: visible;
+    }
+
+    .logo {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+
+        padding: 0 5px 15px;
+        margin-bottom: 14px;
+    }
+
+    .logo h2 {
+        font-size: 25px;
+    }
+
+    .logo p {
+        margin-top: 0;
+        font-size: 10px;
+    }
+
+    .sidebar ul {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 7px;
+    }
+
+    .sidebar li {
+        flex: 1 1 auto;
+        margin-bottom: 0;
+    }
+
+    .sidebar a {
+        justify-content: center;
+        padding: 10px 9px;
+        font-size: 11px;
+        text-align: center;
+    }
+
+    .sidebar a:hover {
+        transform: none;
+    }
+
+    .main-content {
+        width: 100%;
+        margin-left: 0;
+    }
+
+    .topbar {
+        min-height: 68px;
+        padding: 12px 16px;
+        gap: 10px;
+    }
+
+    .topbar h1 {
+        font-size: 16px;
+    }
+
+    .account-avatar {
+        width: 40px;
+        height: 40px;
+        font-size: 15px;
+    }
+
+    .screening-container {
+        padding: 23px 14px 32px;
+    }
+
+    .screening-card {
+        padding: 21px 17px;
+        margin-bottom: 19px;
+        border-radius: 13px;
+    }
+
+    .screening-card h2 {
+        margin-bottom: 15px;
+        font-size: 17px;
+    }
+
+    .description {
+        margin-bottom: 20px;
+        font-size: 12px;
+    }
+
+    .preview-box {
+        min-height: 205px;
+        padding: 16px;
+        margin-top: 18px;
+    }
+
+    .preview-box img {
+        max-height: 260px;
+    }
+
+    .form-grid {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 17px;
+    }
+
+    .form-group label {
+        font-size: 12px;
+    }
+
+    .form-group input,
+    .form-group select {
+        min-height: 45px;
+        font-size: 12px;
+    }
+
+    .screening-btn {
+        width: 100%;
+        min-width: 0;
+        min-height: 48px;
+        padding: 13px 15px;
+        font-size: 13px;
+    }
+
+    .user-dropdown {
+        width: 180px;
+    }
+}
+
+
+/* ==========================================
+   13. RESPONSIVE - VERY SMALL MOBILE
+   ========================================== */
+
+@media (max-width: 380px) {
+    .logo {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 2px;
+    }
+
+    .sidebar ul {
+        display: grid;
+        grid-template-columns: 1fr;
+    }
+
+    .sidebar a {
+        justify-content: flex-start;
+    }
+
+    .topbar {
+        align-items: center;
+    }
+
+    .topbar h1 {
+        max-width: 230px;
+        font-size: 15px;
+    }
+
+    .screening-container {
+        padding-right: 10px;
+        padding-left: 10px;
+    }
+
+    .screening-card {
+        padding: 18px 14px;
+    }
+
+    .choose-btn {
+        width: 100%;
+        padding: 12px 14px;
+    }
+}
+
+
+/* ==========================================
+   14. ACCESSIBILITY
+   ========================================== */
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        scroll-behavior: auto !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
